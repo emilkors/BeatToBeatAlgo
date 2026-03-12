@@ -1,0 +1,12 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Data files
+*.xlsx
+*.h5
+
+# Optional but recommended
+.env
+.DS_Store
+.ipynb_checkpoints/

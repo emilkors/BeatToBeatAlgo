@@ -1,0 +1,61 @@
+
+1. Overview
+Each JSON file contains hierarchical data organized by signal type. 
+
+For each signal type, the JSON stores indices for specific features in the 
+signal such as R-peaks for ECG or time markers (Cs, Ds, etc.) for SCG.
+
+The structure is intended to be generic, allowing additional signals or markers 
+to be added following the same pattern.
+
+2. Top-Level Structure
+{
+    "Signal Name 1": {...}
+    "Signal Name 2": {...}
+    ...
+    ...
+    ...
+    "Signal Name N": {...}
+}
+Signal Name: A string describing the sensor or measurement (ECG lead I, SCG sternum Z or similar)
+Each signal is a dictionary containing one or more arrays of data points
+
+3. Lower-Level Structure
+Each dictionary within the Signal Name dictionary is structured as follows:
+{
+    "Signal Name 1": 
+    {
+        Fiducial Name 1: [x1, x2, x3, ... xN]
+        Fiducial Name 2: [x1, x2, x3, ... xN]
+        ...
+        ...
+        ...
+        Fiducial Name N: [x1, x2, x3, ... xN]
+    }
+    "Signal Name 2": 
+    {
+        Fiducial Name 1: [x1, x2, x3, ... xN]
+        Fiducial Name 2: [x1, x2, x3, ... xN]
+        ...
+        ...
+        ...
+        Fiducial Name N: [x1, x2, x3, ... xN]
+    }
+    etc.
+}
+Each fiducial name represents a specific feature or event in the given signal
+Values should be indices relative to the signal
+All arrays for a given signal should have the same length if they correspond
+to sequential cardiac cycles. 
+
+5. Example JSON
+{
+    "ECG lead II": {
+        "R_peaks": [11991, 16558, 20941, 25025]
+    },
+    "SCG sternum AC": {
+        "Cs": [11760, 16323, 20689, 24893],
+        "Ds": [11919, 16508, 20878, 25005],
+        "Es": [12150, 16702, 21094, 25173]
+    },
+}
