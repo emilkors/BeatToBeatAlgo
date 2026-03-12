@@ -5,6 +5,7 @@ __pycache__/
 # Data files
 *.xlsx
 *.h5
+*.xml
 
 # Optional but recommended
 .env
